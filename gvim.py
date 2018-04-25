@@ -5,7 +5,9 @@ from vim.rules.normal_navigation import NormalModeKeystrokeRule
 from vim.rules.insert_mode import _InsertModeEnabler, _InsertModeDisabler
 from vim.rules.window import WindowRule
 from vim.rules.tabs import TabRule
+from vim.rules.letter import LetterSequenceRule
 from vim.plugins.netrw import NetrwRule
+from vim.plugins.fugutive import FugitiveRule
 
 try:
     import pkg_resources
@@ -48,6 +50,7 @@ class NormalModeRepeatRule(CompoundRule):
 normal_single_rules = [
     RuleRef(rule=BufferRule()),
     RuleRef(rule=NetrwRule()),
+    RuleRef(rule=FugitiveRule()),
     RuleRef(rule=WindowRule()),
     RuleRef(rule=TabRule())
 ]
@@ -116,6 +119,7 @@ InsertModeBootstrap.load()
 
 InsertModeGrammar = Grammar("InsertMode grammar", context=gvim_context)
 InsertModeGrammar.add_rule(InsertModeDisable())
+InsertModeGrammar.add_rule(LetterSequenceRule())
 InsertModeGrammar.load()
 InsertModeGrammar.disable()
 

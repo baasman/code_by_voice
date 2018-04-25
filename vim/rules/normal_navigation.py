@@ -129,6 +129,8 @@ class NormalModeKeystrokeRule(MappingRule):
         "search this": Key("asterisk"),
         "back search <text>": Key("question") + Text("%(text)s\n"),
 
+        "cancel": Key('escape')
+
     }
     extras = [
         # letter,

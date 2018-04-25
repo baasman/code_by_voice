@@ -10,7 +10,7 @@ class PythonEnabler(CompoundRule):
     def _process_recognition(self, node, extras):  # Callback when command is spoken.
         pythonBootstrap.disable()
         pythonGrammar.enable()
-        print "Python grammar enabled"
+        print "Python grammar enabled!"
 
 
 class PythonDisabler(CompoundRule):

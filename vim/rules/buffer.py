@@ -13,6 +13,9 @@ class BufferRule(MappingRule):
         "file done all": Key("colon, x, a, exclamation, enter"),
         "file reload": Key("colon, e, exclamation, enter"),
         "file open [<text>]": Key("colon, e") + Text(" <text>"),
+
+        "buffer next": Key('colon, b, n, e, x, t, enter'),
+        "buffer previous": Key('colon, b, p, r, e, v, i, o, u, s, enter'),
     }
     extras = [
         Dictation("text"),
@@ -20,3 +23,4 @@ class BufferRule(MappingRule):
     defaults = {
         "text": "",
     }
+
