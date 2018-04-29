@@ -3,9 +3,11 @@ from dragonfly import *
 from vim.rules.buffer import BufferRule
 from vim.rules.normal_navigation import NormalModeKeystrokeRule
 from vim.rules.insert_mode import _InsertModeEnabler, _InsertModeDisabler
+from vim.rules.insert_commands import InsertRules
 from vim.rules.window import WindowRule
 from vim.rules.tabs import TabRule
 from vim.rules.letter import LetterSequenceRule
+from vim.rules.command_mode import CommandModeStartRule, CommandModeFinishRule, CommandModeCommands
 from vim.plugins.netrw import NetrwRule
 from vim.plugins.fugutive import FugitiveRule
 
@@ -101,7 +103,21 @@ class InsertModeDisable(_InsertModeDisabler):
 
 # ------------------------------------
 
+class CommandModeEnabler(CommandModeStartRule):
+    def _process_recognition(self, node, extras):
+        commandModeBootstrap.disable()
+        normalModeGrammar.disable()
+        commandModeGrammar.enable()
+        super(self.__class__, self)._process_recognition(node, extras)
+        print "\n(EX MODE)"
 
+class CommandModeDisabler(CommandModeFinishRule):
+    def _process_recognition(self, node, extras):
+        commandModeGrammar.disable()
+        commandModeBootstrap.enable()
+        normalModeGrammar.enable()
+        super(self.__class__, self)._process_recognition(node, extras)
+        print "\n(NORMAL)"
 
 # global vim context
 gvim_context = AppContext(executable="gvim")
@@ -120,8 +136,19 @@ InsertModeBootstrap.load()
 InsertModeGrammar = Grammar("InsertMode grammar", context=gvim_context)
 InsertModeGrammar.add_rule(InsertModeDisable())
 InsertModeGrammar.add_rule(LetterSequenceRule())
+InsertModeGrammar.add_rule(InsertRules())
 InsertModeGrammar.load()
 InsertModeGrammar.disable()
+
+commandModeBootstrap = Grammar("Command Mode bootstrap", context=gvim_context)
+commandModeBootstrap.add_rule(CommandModeEnabler())
+commandModeBootstrap.load()
+
+commandModeGrammar = Grammar("Command Mode grammar", context=gvim_context)
+commandModeGrammar.add_rule(CommandModeDisabler())
+commandModeGrammar.add_rule(CommandModeCommands())
+commandModeGrammar.load()
+commandModeGrammar.disable()
 
 def unload():
     global normalModeGrammar

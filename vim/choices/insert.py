@@ -4,6 +4,8 @@ insert_start_commands = {
 
     "change": "c",
     "change whiskey": "c,w",
+    "change inner whiskey": "c,i,w",
+    "change character": "c,right",
     "change (echo|end)": "c,e",
     "change a paragraph": "c,a,p",
     "change inner paragraph": "c,i,p",

@@ -12,8 +12,8 @@ def letterChoice(name="letter"):
         'hotel': 'h',
         'india': 'i',
         'julia': 'j',
-        'kilo': 'k',
-        'lima': 'l',
+        'kiss': 'k',
+        'lime': 'l',
         'mike': 'm',
         'novakeen': 'n',
         'oscar': 'o',
@@ -105,4 +105,7 @@ def letterChoice(name="letter"):
         'race': 'rbrace',
         'rack': 'rbracket',
         'raip': 'rparen',
+
+        "not equals": "space,exclamation,equal,space",
+        "triple quote": "dquote,dquote,dquote",
         })

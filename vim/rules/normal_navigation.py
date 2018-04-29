@@ -7,6 +7,10 @@ from dragonfly import (
     Dictation
 )
 from ..choices.letter import letterChoice
+# from .letter import letter, letter_sequence
+#
+# def execute_letter(letter):
+#     letter.execute()
 
 
 class NormalModeKeystrokeRule(MappingRule):
@@ -75,10 +79,10 @@ class NormalModeKeystrokeRule(MappingRule):
         "[<n>] undo": Key("u:%(n)d"),
         "[<n>] redo": Key("c-r:%(n)d"),
 
-        # '[<n>] find <letter>': Text('%(n)df') + Function(executeLetter),
-        # '[<n>] shift find <letter>': Text('%(n)dF') + Function(executeLetter),
-        # 'find [<n>] <letter>': Text('%(n)df') + Function(executeLetter),
-        # 'shift find [<n>] <letter>': Text('%(n)dF') + Function(executeLetter),
+        # '[<n>] find <letter>': Text('%(n)df') + Function(execute_letter),
+        # '[<n>] shift find <letter>': Text('%(n)dF') + Function(execute_letter),
+        # 'find [<n>] <letter>': Text('%(n)df') + Function(execute_letter),
+        # 'shift find [<n>] <letter>': Text('%(n)dF') + Function(execute_letter),
         #
         # '[<n>] again': Text('%(n)d;'),
         # '[<n>] shift again': Text('%(n)d,'),
@@ -91,6 +95,7 @@ class NormalModeKeystrokeRule(MappingRule):
         "(yank | copy)": Key("y"),
         "(yank | copy) a paragraph": Key("y,a,p"),
         "(yank | copy) inner paragraph": Key("y,i,p"),
+        "(yank | copy) inner word": Key("y,i,w"),
         "(yank | copy) a (paren|parenthesis|raip|laip)": Key("y,a,rparen"),
         "(yank | copy) inner (paren|parenthesis|raip|laip)": Key("y,i,rparen"),
         "shift (yank | copy)": Key("Y"),

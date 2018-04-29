@@ -11,17 +11,26 @@ class LetterRule(MappingRule):
         "[<n>] down": Key("down:%(n)d"),
         "[<n>] left": Key("left:%(n)d"),
         "[<n>] right": Key("right:%(n)d"),
+        # "slap": Key("enter"),
 
-        "<text>": Text("%(text)s"),
+        # "[<n>] (scratch|delete)": Key("c-w:%(n)d"),
+        # "[<n>] slap": Key("enter:%(n)d"),
+        # "[<n>] tab": Key("tab:%(n)d"),
+        # "[<n>] backspace": Key("backspace:%(n)d"),
+        # "(scratch|delete) line": Key("c-u"),
+
+        # "<text>": Text("%(text)s"),
     }
     extras = [
         letterChoice("letter"),
         IntegerRef("n", 1, 100),
-        Dictation('text')
+        # Dictation('text')
     ]
 
+letter = RuleRef(rule = LetterRule(), name='letter')
+
 letter_sequence = Repetition(
-    Alternative([RuleRef(rule = LetterRule())]),
+    Alternative([letter]),
     min=1,max=12, name="letter_sequence")
 
 class LetterSequenceRule(CompoundRule):

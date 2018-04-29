@@ -8,6 +8,8 @@ class NetrwRule(MappingRule):
         "explore split": Text(":Sexplore") + Key("enter"),
         "explore tab": Text(":Texplore") + Key("enter"),
         "explore back": Text(":Rexplore") + Key("enter"),
+        "create net file": Key('%'),
+        "create net directory": Key('d')
     }
     extras = []
     defaults = {}
