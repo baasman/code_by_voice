@@ -97,6 +97,9 @@ def letterChoice(name="letter"):
         'tilde': 'tilde',
         '(underscore | score)': 'underscore',
 
+        # langle: <
+        # lace: {
+        # lack: [
         'langle': 'langle',
         'lace': 'lbrace',
         'lack': 'lbracket',

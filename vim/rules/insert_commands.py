@@ -9,15 +9,15 @@ class InsertRules(MappingRule):
         # "[<n>] right": Key("right:%(n)d"),
         "slap": Key("enter"),
 
-        "[<n>] (scratch|delete)": Key("c-w:%(n)d"),
-        # "[<n>] slap": Key("enter:%(n)d"),
-        "[<n>] tab": Key("tab:%(n)d"),
-        "[<n>] backspace": Key("backspace:%(n)d"),
+        "(scratch|delete)": Key("c-w"),
+        "tab": Key("tab"),
+        "backspace": Key("backspace"),
         "(scratch|delete) line": Key("c-u"),
 
         "<text>": Text("%(text)s"),
+
+        "insert debug": Text('import ipdb; ipdb.set_trace()')
     }
     extras = [
-        IntegerRef("n", 1, 100),
         Dictation('text')
     ]

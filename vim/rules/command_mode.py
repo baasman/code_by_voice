@@ -25,6 +25,10 @@ class CommandModeStartRule(MappingRule):
         "exec sort": Text(":sort "),
         "exec source": Text(":source "),
 
+        "exec tab": Text(":tabe "),
+        "exec file": Text(":e "),
+        "exec split": Text(":sp "),
+
         # FIXME: Should have its own bootstrap and mode, maybe?
         "exec search": Text("/"),
         "exec (restrict | include)": Text(":g//") + Key('left'),

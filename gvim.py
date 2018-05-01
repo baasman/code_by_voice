@@ -70,6 +70,22 @@ class NormalModeSingleAction(CompoundRule):
 
 # ------------------------------------
 
+insert_single_rules = [
+    RuleRef(rule=InsertRules()),
+]
+
+insert_single_action = Alternative(insert_single_rules,
+                                   name='insert_mode_single_action')
+
+class InsertModeSingleAction(CompoundRule):
+    spec = "<insert_mode_single_action>"
+    extras = [ insert_single_action ]
+    def _process_recognition(self, node, extras):
+        print extras
+        action = extras["insert_mode_single_action"]
+        action.execute()
+        release.execute()
+
 class InsertModeEnable(_InsertModeEnabler):
 
     def _process_recognition(self, node, extras):
@@ -136,7 +152,7 @@ InsertModeBootstrap.load()
 InsertModeGrammar = Grammar("InsertMode grammar", context=gvim_context)
 InsertModeGrammar.add_rule(InsertModeDisable())
 InsertModeGrammar.add_rule(LetterSequenceRule())
-InsertModeGrammar.add_rule(InsertRules())
+InsertModeGrammar.add_rule(InsertModeSingleAction())
 InsertModeGrammar.load()
 InsertModeGrammar.disable()
 
@@ -158,3 +174,7 @@ def unload():
     global InsertModeGrammar
     if InsertModeGrammar: InsertModeGrammar.unload()
     InsertModeGrammar = None
+
+    global commandModeGrammar
+    if commandModeGrammar: commandModeGrammar.unload()
+    commandModeGrammar = None

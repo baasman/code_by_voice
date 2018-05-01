@@ -71,6 +71,10 @@ class NormalModeKeystrokeRule(MappingRule):
         "(delete | D.) a (bracket|race|lace)": Key("d,a,rbrace"),
         "(delete | D.) inner (bracket|race|lace)": Key("d,i,rbrace"),
 
+        "(delete | D.) character": Key("x"),
+        "(delete | D.) line": Key("d,d"),
+        "(delete | D.) end": Key("d,e"),
+
         "[<n>] (increment|increase)": Key("c-a:%(n)d"),
         "[<n>] (decrement|decrease)": Key("c-x:%(n)d"),
 
@@ -100,6 +104,8 @@ class NormalModeKeystrokeRule(MappingRule):
         "(yank | copy) inner (paren|parenthesis|raip|laip)": Key("y,i,rparen"),
         "shift (yank | copy)": Key("Y"),
         "copy line": Key("y,y"),
+        "yank end": Key("y,e"),
+        "yank rest": Key("y,dollar"),
 
         "paste": Key("p"),
         "shift paste": Key("P"),

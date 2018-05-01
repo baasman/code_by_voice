@@ -11,6 +11,7 @@ insert_start_commands = {
     "change inner paragraph": "c,i,p",
     "change a (paren|parenthesis|raip|laip)": "c,a,rparen",
     "change inner (paren|parenthesis|raip|laip)": "c,i,rparen",
+    "change inner quote": "c,i,dquote",
     "shift change": "C",
 
     "sub line" : "S",

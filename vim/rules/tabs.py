@@ -5,6 +5,8 @@ class TabRule(MappingRule):
     mapping = {
         "tabulator next": Key("g,t"),
         "tabulator previous": Key("g,T"),
+        "tabulator first": Key("colon,t,a,b,r"),
+        "tabulator last": Key("colon,t,a,b,l"),
     }
     extras = [
     ]
