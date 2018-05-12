@@ -7,6 +7,14 @@ class FugitiveRule(MappingRule):
         "get diff this": Text(":Gdiff") + Key("enter"),
         "get commit": Text(":Gcommit") + Key("enter"),
 
+
+        # when in g status
+        # possible needs own bootstrap
+        "status open tabulator": Key('O'),
+        "status open split": Key('o'),
+        "status view diff": Key('D'),
+        "status add file": Key("minus"),
+
         # Navigating Gstatus window:
         # TODO: Own grammar with AppContext "vim - index"
         "[<n>] get up": Key("%(n)d, c-p"),

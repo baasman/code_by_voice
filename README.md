@@ -7,4 +7,3 @@ to replicate this setup would be:
     2. Install Dragonfly
     3. Set Natlink user directory to this repo
     4. Install Cygwin with openssh, rsync, and screen
-    5. Open 

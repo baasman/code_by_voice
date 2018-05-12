@@ -111,16 +111,4 @@ def letterChoice(name="letter"):
 
         "not equals": "space,exclamation,equal,space",
         "triple quote": "dquote,dquote,dquote",
-        })
-
-
-def WordChoice(name="word"):
-    return Choice(name, {
-        'from': 'from',
-        'import': 'import',
-        'as': 'as',
-        'length': 'len',
-        'return': 'return',
-        'define': 'def',
-        'logger': 'logger'
     })

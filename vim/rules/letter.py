@@ -6,7 +6,7 @@ class LetterRule(MappingRule):
         "<letter>": Key("%(letter)s"),
 
         # jedi
-        "complete": Key('c-space'),
+        "complete": Key('c-p'),
         "[<n>] up": Key("up:%(n)d"),
         "[<n>] down": Key("down:%(n)d"),
         "[<n>] left": Key("left:%(n)d"),

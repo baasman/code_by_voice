@@ -36,6 +36,7 @@ class NormalModeKeystrokeRule(MappingRule):
         "visual": Key("v"),
         "visual line": Key("s-v"),
         "visual block": Key("c-v"),
+        "visual select all": Key("g,g,V,G"),
 
         "next": Key("n"),
         "previous": Key("N"),
@@ -140,7 +141,13 @@ class NormalModeKeystrokeRule(MappingRule):
         "search this": Key("asterisk"),
         "back search <text>": Key("question") + Text("%(text)s\n"),
 
-        "cancel": Key('escape')
+        "cancel": Key('escape'),
+
+        "last edit": Key("dot"),
+
+        "toggle comment": Key("comma, c, space"),
+
+        "paste clip": Key("quote, plus, g, P")
 
     }
     extras = [

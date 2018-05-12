@@ -1,4 +1,5 @@
 from dragonfly import MappingRule, Key, Text, IntegerRef, Dictation
+from vim.choices.letter import WordChoice
 
 
 class InsertRules(MappingRule):
@@ -16,8 +17,28 @@ class InsertRules(MappingRule):
 
         "<text>": Text("%(text)s"),
 
-        "insert debug": Text('import ipdb; ipdb.set_trace()')
+        "insert breakpoint": Text('import pdb; pdb.set_trace()'),
+
+        # ctrlp commands
+        # TODO: this should be own mode
+        "open tabulator": Key('c-t'),
+        "open vertical split": Key('c-v'),
+        "open horizontal split": Key('c-x'),
+        "switch buffer": Key('c-b'),
+        "switch file": Key('c-f'),
+
+        # common python words
+
     }
     extras = [
         Dictation('text')
+    ]
+
+
+class CommonInsertWordsRule(MappingRule):
+    mapping = {
+        "<word>": Key("%(word)s"),
+    }
+    extras = [
+        WordChoice("word"),
     ]

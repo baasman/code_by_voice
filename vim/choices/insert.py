@@ -12,6 +12,7 @@ insert_start_commands = {
     "change a (paren|parenthesis|raip|laip)": "c,a,rparen",
     "change inner (paren|parenthesis|raip|laip)": "c,i,rparen",
     "change inner quote": "c,i,dquote",
+    "change inner single quote": "c,i,quote",
     "shift change": "C",
 
     "sub line" : "S",
@@ -20,7 +21,9 @@ insert_start_commands = {
     "shift (after | append)": "A",
 
     "oh": "o",
-    "shift oh": "O"
+    "shift oh": "O",
+    "exec insert": "colon",
+    "exec control pee": "colon, C, t, r, l, P, enter"
 }
 
 
