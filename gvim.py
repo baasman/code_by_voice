@@ -10,6 +10,7 @@ from vim.rules.letter import LetterSequenceRule
 from vim.rules.command_mode import CommandModeStartRule, CommandModeFinishRule, CommandModeCommands
 from vim.plugins.netrw import NetrwRule
 from vim.plugins.fugutive import FugitiveRule
+from vim.plugins.easymotion import EasyMotionRule
 
 try:
     import pkg_resources
@@ -53,6 +54,7 @@ normal_single_rules = [
     RuleRef(rule=BufferRule()),
     RuleRef(rule=NetrwRule()),
     RuleRef(rule=FugitiveRule()),
+    RuleRef(rule=EasyMotionRule()),
     RuleRef(rule=WindowRule()),
     RuleRef(rule=TabRule())
 ]
