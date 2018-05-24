@@ -23,7 +23,9 @@ insert_start_commands = {
     "oh": "o",
     "shift oh": "O",
     "exec insert": "colon",
-    "exec control pee": "colon, C, t, r, l, P, enter"
+    "exec control pee": "colon, C, t, r, l, P, enter",
+
+    "open terminal": "colon, t, e, r, m, enter",
 }
 
 

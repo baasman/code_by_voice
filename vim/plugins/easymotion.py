@@ -12,11 +12,7 @@ class EasyMotionRule(MappingRule):
         "<letter>": Key("%(letter)s"),
     }
     extras = [
-        IntegerRef("n", 1, 10),
         motionChoice('motion'),
         letterChoice("letter"),
         findChoice('find')
     ]
-    defaults = {
-        'n': 1,
-    }

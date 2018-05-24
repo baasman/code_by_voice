@@ -9,6 +9,7 @@ from vim.rules.tabs import TabRule
 from vim.rules.letter import LetterSequenceRule
 from vim.rules.command_mode import CommandModeStartRule, CommandModeFinishRule, CommandModeCommands
 from vim.plugins.netrw import NetrwRule
+from vim.plugins.csv import CSVRule
 from vim.plugins.fugutive import FugitiveRule
 from vim.plugins.easymotion import EasyMotionRule
 
@@ -53,6 +54,7 @@ class NormalModeRepeatRule(CompoundRule):
 normal_single_rules = [
     RuleRef(rule=BufferRule()),
     RuleRef(rule=NetrwRule()),
+    RuleRef(rule=CSVRule()),
     RuleRef(rule=FugitiveRule()),
     RuleRef(rule=EasyMotionRule()),
     RuleRef(rule=WindowRule()),
@@ -73,7 +75,7 @@ class NormalModeSingleAction(CompoundRule):
 # ------------------------------------
 
 insert_single_rules = [
-    RuleRef(rule=InsertRules()),
+    RuleRef(rule=InsertRules())
 ]
 
 insert_single_action = Alternative(insert_single_rules,

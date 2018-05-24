@@ -23,8 +23,12 @@ class NormalModeKeystrokeRule(MappingRule):
         "[<n>] right": Key("l:%(n)d"),
         "[<n>] go up": Key("c-b:%(n)d"),
         "[<n>] go down": Key("c-f:%(n)d"),
+
+        "[<n>] scroll up": Key("c-y:%(n)d"),
+        "[<n>] scroll down": Key("c-e:%(n)d"),
+
         "hat": Key("caret"),
-        "dollar": Key("dollar"),
+        "rest": Key("dollar"),
         "match": Key("percent"),
         "doc home": Key("c-home"),
         "doc end": Key("c-end"),
@@ -38,6 +42,7 @@ class NormalModeKeystrokeRule(MappingRule):
         "visual block": Key("c-v"),
         "visual select all": Key("g,g,V,G"),
 
+        "next occurrence": Key("asterisk"),
         "next": Key("n"),
         "previous": Key("N"),
         "[<n>] back": Key("b:%(n)d"),
@@ -107,6 +112,9 @@ class NormalModeKeystrokeRule(MappingRule):
         "copy line": Key("y,y"),
         "yank end": Key("y,e"),
         "yank rest": Key("y,dollar"),
+
+        # always yank in register k
+        "register yank": Key('quote, k, y'),
 
         "paste": Key("p"),
         "shift paste": Key("P"),

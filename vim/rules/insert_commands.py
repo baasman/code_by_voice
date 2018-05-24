@@ -26,9 +26,6 @@ class InsertRules(MappingRule):
         "open horizontal split": Key('c-x'),
         "switch buffer": Key('c-b'),
         "switch file": Key('c-f'),
-
-        # common python words
-
     }
     extras = [
         Dictation('text')
