@@ -6,6 +6,8 @@ class CSVRule(MappingRule):
         "delete column [<n>]": Key("colon") + Text("DeleteColumn %(n)d") + Key("enter"),
         "set header [<n>]": Text(":Header %(n)d") + Key("enter"),
         "highlight column [<n>]": Text(":HiColumn %(n)d") + Key("enter"),
+        "highlight column [<n>]": Text(":HiColumn %(n)d") + Key("enter"),
+        "analyze column [<n>]": Text(":Analyze %(n)d") + Key("enter"),
     }
     extras = [
         IntegerRef("n", 1, 10),

@@ -23,13 +23,20 @@ class TerminalCommands(MappingRule):
     mapping = {
         "terminal directory": Text("dir") + Key("enter"),
         "terminal up": Key("up"),
-        "terminal python": Text("python "),
+        "terminal python": Text("python"),
+        "terminal python three": Text("python3"),
+        "terminal pip": Text("pip3"),
         "terminal change": Text("cd  "),
         "terminal close process": Key("c-c"),
+        "terminal back": Text("cd ..") + Key("enter"),
+        "terminal activate environment windows": Text("venv\\Scripts\\activate") + Key("enter"),
+        "terminal activate environment unix": Text("source venv/bin/activate") + Key("enter"),
+        "terminal set ex": Text("setx "),
 
         "terminal quit": Key("c-w, q, exclamation"),
         "terminal normal mode": Key("c-w, N"),
         "terminal insert mode": Key("i"),
+        "terminal bash": Text("c:\\cygwin64\\bin\\bash\\bash.exe --login -i") + Key("enter"),
 
         "paste from register": Key("c-w, quote, k"),
 
@@ -46,6 +53,12 @@ class TerminalCommands(MappingRule):
         "debug next": Text("n") + Key("enter"),
         "debug quit": Text("quit()") + Key("enter"),
         "debug continue": Text("c") + Key("enter"),
+
+        "terminal go background": Key('c-z'),
+        "terminal go foreground": Text('fg') + Key("enter"),
+
+        "recursive search": Key("c-r"),
+
     }
 
 

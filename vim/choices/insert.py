@@ -15,7 +15,7 @@ insert_start_commands = {
     "change inner single quote": "c,i,quote",
     "shift change": "C",
 
-    "sub line" : "S",
+    "change line": "S",
 
     "(after | append)": "a",
     "shift (after | append)": "A",
@@ -24,8 +24,13 @@ insert_start_commands = {
     "shift oh": "O",
     "exec insert": "colon",
     "exec control pee": "colon, C, t, r, l, P, enter",
+    "exec save session": 'colon, ' + ', '.join(list('SaveSession')) + ', enter',
 
     "open terminal": "colon, t, e, r, m, enter",
+    "open terminal in window": "colon, t, e, r, m, space, plus, plus, c, u, r, w, i, n, enter",
+    "nerd change node": 'm',
+
+    "search mode": "slash"
 }
 
 

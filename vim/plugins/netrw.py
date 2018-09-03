@@ -4,7 +4,7 @@ class NetrwRule(MappingRule):
     exported = True
     mapping = {
         "explore here": Text(":Explore") + Key("enter"),
-        "explore fault": Text(":Vexplore") + Key("enter"),
+        "explore vertical": Text(":Vexplore") + Key("enter"),
         "explore split": Text(":Sexplore") + Key("enter"),
         "explore tab": Text(":Texplore") + Key("enter"),
         "explore back": Text(":Rexplore") + Key("enter"),
@@ -12,4 +12,4 @@ class NetrwRule(MappingRule):
         "create net directory": Key('d')
     }
     extras = []
-    defaults = {}
+    default = {}

@@ -7,6 +7,7 @@ from dragonfly import (
     Dictation
 )
 from ..choices.letter import letterChoice
+from ..config import leader
 # from .letter import letter, letter_sequence
 #
 # def execute_letter(letter):
@@ -145,9 +146,9 @@ class NormalModeKeystrokeRule(MappingRule):
         "go <line>": Key("colon") + Text("%(line)s\n"),
 
         # searching
-        "search <text>": Key("slash") + Text("%(text)s\n"),
+        # "search <text>": Key("slash") + Text("%(text)s\n"),
         "search this": Key("asterisk"),
-        "back search <text>": Key("question") + Text("%(text)s\n"),
+        # "back search <text>": Key("question") + Text("%(text)s\n"),
 
         "cancel": Key('escape'),
 
@@ -155,7 +156,11 @@ class NormalModeKeystrokeRule(MappingRule):
 
         "toggle comment": Key("comma, c, space"),
 
-        "paste clip": Key("quote, plus, g, P")
+        "paste clip": Key("quote, plus, g, P"),
+
+        "run selection": Key("%s, k" % leader),
+
+        "run last process": Key("%s, b" % leader),
 
     }
     extras = [

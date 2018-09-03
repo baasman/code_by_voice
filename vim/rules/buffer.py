@@ -13,6 +13,7 @@ class BufferRule(MappingRule):
 
         "buffer next": Key('colon, b, n, e, x, t, enter'),
         "buffer previous": Key('colon, b, p, r, e, v, i, o, u, s, enter'),
+        "buffer show all": Key('colon, l, s'),
     }
     extras = [
         Dictation("text"),

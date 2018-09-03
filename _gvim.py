@@ -13,6 +13,7 @@ from vim.plugins.csv import CSVRule
 from vim.plugins.fugutive import FugitiveRule
 from vim.plugins.easymotion import EasyMotionRule
 from vim.plugins.nerdtree import NERDTreeRule
+from vim.plugins.bufkill import BufKillRule 
 
 
 try:
@@ -21,7 +22,7 @@ try:
 except ImportError:
     pass
 
-print 'gvim grammer accessed'
+print 'gvim grammer accessed from vmbox'
 
 release = Key("shift:up, ctrl:up")
 
@@ -61,7 +62,8 @@ normal_single_rules = [
     RuleRef(rule=FugitiveRule()),
     RuleRef(rule=EasyMotionRule()),
     RuleRef(rule=WindowRule()),
-    RuleRef(rule=TabRule())
+    RuleRef(rule=TabRule()),
+    RuleRef(rule=BufKillRule()),
 ]
 
 normal_single_action = Alternative(normal_single_rules,
@@ -143,7 +145,7 @@ class CommandModeDisabler(CommandModeFinishRule):
         print "\n(NORMAL)"
 
 # global vim context
-gvim_context = AppContext(executable="gvim")
+gvim_context = AppContext(title="Oracle VM VirtualBox")
 # gvim_context = AppContext(executable="VirtualBox")
 
 # normal mode
