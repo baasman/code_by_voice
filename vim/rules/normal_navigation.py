@@ -41,11 +41,13 @@ class NormalModeKeystrokeRule(MappingRule):
         "visual": Key("v"),
         "visual line": Key("s-v"),
         "visual block": Key("c-v"),
-        "visual select all": Key("g,g,V,G"),
+        "visual paragraph": Key("v, i, p"),
+        "visual select all": Key("g,g,v,g"),
 
-        "next occurrence": Key("asterisk"),
+        "search this": Key("asterisk"),
         "next": Key("n"),
         "previous": Key("N"),
+
         "[<n>] back": Key("b:%(n)d"),
         "[<n>] whiskey": Key("w:%(n)d"),
         "[<n>] end": Key("e:%(n)d"),
@@ -147,7 +149,6 @@ class NormalModeKeystrokeRule(MappingRule):
 
         # searching
         # "search <text>": Key("slash") + Text("%(text)s\n"),
-        "search this": Key("asterisk"),
         # "back search <text>": Key("question") + Text("%(text)s\n"),
 
         "cancel": Key('escape'),

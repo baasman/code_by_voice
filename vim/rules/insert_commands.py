@@ -4,10 +4,10 @@ from vim.choices.letter import WordChoice
 
 class InsertRules(MappingRule):
     mapping = {
-        # "[<n>] up": Key("up:%(n)d"),
-        # "[<n>] down": Key("down:%(n)d"),
-        # "[<n>] left": Key("left:%(n)d"),
-        # "[<n>] right": Key("right:%(n)d"),
+        "[<n>] up": Key("up:%(n)d"),
+        "[<n>] down": Key("down:%(n)d"),
+        "[<n>] left": Key("left:%(n)d"),
+        "[<n>] right": Key("right:%(n)d"),
         "slap": Key("enter"),
 
         "(scratch|delete)": Key("c-w"),
@@ -28,7 +28,8 @@ class InsertRules(MappingRule):
         "switch file": Key('c-f'),
     }
     extras = [
-        Dictation('text')
+        Dictation('text'),
+        IntegerRef("n", 1, 100),
     ]
 
 

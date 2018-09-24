@@ -1,5 +1,6 @@
 from dragonfly import MappingRule, Key, Text, Dictation
 
+
 class BufferRule(MappingRule):
     mapping = {
         "file save": Key("colon, w, exclamation, enter"),

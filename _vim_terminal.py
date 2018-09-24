@@ -20,26 +20,62 @@ class TerminalDisabler(CompoundRule):
 
 
 class TerminalCommands(MappingRule):
+
+    extras = [
+            Dictation('text')
+    ]
+
     mapping = {
-        "terminal directory": Text("dir") + Key("enter"),
         "terminal up": Key("up"),
-        "terminal python": Text("python"),
-        "terminal python three": Text("python3"),
+
+        "terminal python": Text("python") + Key('enter'),
+        "terminal python three": Text("python3") + Key('enter'),
+        "terminal ipython": Text("ipython") + Key('enter'),
+        "terminal python quit": Text("quit()") + Key('enter'),
+
+        # pip stuff
         "terminal pip": Text("pip3"),
-        "terminal change": Text("cd  "),
-        "terminal close process": Key("c-c"),
+        "terminal pip install": Text("pip3 install "),
+        "terminal pip list": Text("pip3 list") + Key('enter'),
+
+        # directory stuff
+        "terminal change": Text("cd "),
+        "terminal directory": Text("ls") + Key("enter"),
         "terminal back": Text("cd ..") + Key("enter"),
+        "[sudo] terminal move": Text("mv  "),
+        "[sudo] terminal make directory": Text("mkdir "),
+        "terminal open vim": Text("vim") + Key("enter"),
+
+        # general unix commands
+        "terminal top": Text("top") + Key("enter"),
+        "terminal quit": Key("q"),
+        "terminal search": Key("c-r"),
+
+        # grep unix commands
+        "terminal grep <text>": Text("grep -nr %(text)s .") + Key("enter"),
+
+        # interaction
+        "paste from register": Key("c-w, quote, k"),
+
+        # debugger options
+        "debug next": Text("n") + Key("enter"),
+        "debug quit": Text("quit()") + Key("enter"),
+        "debug continue": Text("c") + Key("enter"),
+
+        # process stuff
+        "terminal close process": Key("c-c"),
+        "terminal go background": Key('c-z'),
+        "terminal go foreground": Text('fg') + Key("enter"),
+
+        # misc
         "terminal activate environment windows": Text("venv\\Scripts\\activate") + Key("enter"),
         "terminal activate environment unix": Text("source venv/bin/activate") + Key("enter"),
         "terminal set ex": Text("setx "),
 
-        "terminal quit": Key("c-w, q, exclamation"),
+        "terminal exit mode": Key("c-w, q, exclamation"),
         "terminal normal mode": Key("c-w, N"),
         "terminal insert mode": Key("i"),
         "terminal bash": Text("c:\\cygwin64\\bin\\bash\\bash.exe --login -i") + Key("enter"),
-
-        "paste from register": Key("c-w, quote, k"),
-
 
         "window left": Key("c-w,h"),
         "window right": Key("c-w,l"),
@@ -49,18 +85,7 @@ class TerminalCommands(MappingRule):
         "terminal tabulator next": Key("c-w") + Text(":tabn") + Key('enter'),
         "terminal tabulator previous": Key("c-w") + Text(":tabp") + Key('enter'),
 
-        # debugger options
-        "debug next": Text("n") + Key("enter"),
-        "debug quit": Text("quit()") + Key("enter"),
-        "debug continue": Text("c") + Key("enter"),
-
-        "terminal go background": Key('c-z'),
-        "terminal go foreground": Text('fg') + Key("enter"),
-
-        "recursive search": Key("c-r"),
-
     }
-
 
 # The main Python grammar rules are activated here
 vimTerminalBootstrap = Grammar("vim terminal bootstrap")

@@ -22,7 +22,7 @@ try:
 except ImportError:
     pass
 
-print 'gvim grammer accessed from vmbox'
+print 'vim grammer accessed from virtualbox'
 
 release = Key("shift:up, ctrl:up")
 
@@ -69,9 +69,11 @@ normal_single_rules = [
 normal_single_action = Alternative(normal_single_rules,
                                    name='normal_mode_single_action')
 
+
 class NormalModeSingleAction(CompoundRule):
     spec = "<normal_mode_single_action>"
-    extras = [ normal_single_action ]
+    extras = [normal_single_action]
+
     def _process_recognition(self, node, extras):
         action = extras["normal_mode_single_action"]
         action.execute()
@@ -86,25 +88,32 @@ insert_single_rules = [
 insert_single_action = Alternative(insert_single_rules,
                                    name='insert_mode_single_action')
 
+
 class InsertModeSingleAction(CompoundRule):
     spec = "<insert_mode_single_action>"
-    extras = [ insert_single_action ]
+    extras = [insert_single_action]
+
     def _process_recognition(self, node, extras):
         print extras
         action = extras["insert_mode_single_action"]
         action.execute()
         release.execute()
 
+
 class InsertModeEnable(_InsertModeEnabler):
 
     def _process_recognition(self, node, extras):
+        print(extras)
         InsertModeBootstrap.disable()
         normalModeGrammar.disable()
         InsertModeGrammar.enable()
 
-        for string in extras['command'].split(','):
-            key = Key(string)
-            key.execute()
+        if extras['command'] == 'terminal':
+            pass
+        else:
+            for string in extras['command'].split(','):
+                key = Key(string)
+                key.execute()
 
         super(self.__class__, self)._process_recognition(node, extras)
         print '\n(Insert Mode)'
@@ -136,6 +145,7 @@ class CommandModeEnabler(CommandModeStartRule):
         super(self.__class__, self)._process_recognition(node, extras)
         print "\n(EX MODE)"
 
+
 class CommandModeDisabler(CommandModeFinishRule):
     def _process_recognition(self, node, extras):
         commandModeGrammar.disable()
@@ -145,46 +155,49 @@ class CommandModeDisabler(CommandModeFinishRule):
         print "\n(NORMAL)"
 
 # global vim context
-gvim_context = AppContext(title="Oracle VM VirtualBox")
-# gvim_context = AppContext(executable="VirtualBox")
+vim_context = AppContext(title="Oracle VM VirtualBox")
 
 # normal mode
-normalModeGrammar = Grammar("gvim", context=gvim_context)
+normalModeGrammar = Grammar("vim", context=vim_context)
 normalModeGrammar.add_rule(NormalModeRepeatRule())
 normalModeGrammar.add_rule(NormalModeSingleAction())
 normalModeGrammar.load()
 
 # insert mode
-InsertModeBootstrap = Grammar("InsertMode Bootstrap", context=gvim_context)
+InsertModeBootstrap = Grammar("InsertMode Bootstrap", context=vim_context)
 InsertModeBootstrap.add_rule(InsertModeEnable())
 InsertModeBootstrap.load()
 
-InsertModeGrammar = Grammar("InsertMode grammar", context=gvim_context)
+InsertModeGrammar = Grammar("InsertMode grammar", context=vim_context)
 InsertModeGrammar.add_rule(InsertModeDisable())
 InsertModeGrammar.add_rule(LetterSequenceRule())
 InsertModeGrammar.add_rule(InsertModeSingleAction())
 InsertModeGrammar.load()
 InsertModeGrammar.disable()
 
-commandModeBootstrap = Grammar("Command Mode bootstrap", context=gvim_context)
+commandModeBootstrap = Grammar("Command Mode bootstrap", context=vim_context)
 commandModeBootstrap.add_rule(CommandModeEnabler())
 commandModeBootstrap.load()
 
-commandModeGrammar = Grammar("Command Mode grammar", context=gvim_context)
+commandModeGrammar = Grammar("Command Mode grammar", context=vim_context)
 commandModeGrammar.add_rule(CommandModeDisabler())
 commandModeGrammar.add_rule(CommandModeCommands())
 commandModeGrammar.load()
 commandModeGrammar.disable()
 
+
 def unload():
     global normalModeGrammar
-    if normalModeGrammar: normalModeGrammar.unload()
+    if normalModeGrammar:
+        normalModeGrammar.unload()
     normalModeGrammar = None
 
     global InsertModeGrammar
-    if InsertModeGrammar: InsertModeGrammar.unload()
+    if InsertModeGrammar:
+        InsertModeGrammar.unload()
     InsertModeGrammar = None
 
     global commandModeGrammar
-    if commandModeGrammar: commandModeGrammar.unload()
+    if commandModeGrammar:
+        commandModeGrammar.unload()
     commandModeGrammar = None

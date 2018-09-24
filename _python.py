@@ -43,6 +43,24 @@ class PythonControlStructures(MappingRule):
     }
 
 
+class PythonUsefulCommands(MappingRule):
+    mapping = {
+        "import panda": Text("import pandas as pd") + Key("enter"),
+        "import numpy": Text("import numpy as np") + Key("enter"),
+        "import plot": Text("import matplotlib.pyplot as plt") + Key("enter"),
+
+        # pandas
+        "pandas": Text("pandas"),
+        "pandas head": Text(".head()"),
+
+        # numpy
+        "numpy": Text("np"),
+
+        # matplotlib
+        "show plot": Text("plt.show()"),
+    }
+
+
 # The main Python grammar rules are activated here
 pythonBootstrap = Grammar("python bootstrap")
 pythonBootstrap.add_rule(PythonEnabler())
@@ -51,6 +69,7 @@ pythonBootstrap.load()
 pythonGrammar = Grammar("python grammar")
 pythonGrammar.add_rule(PythonTestRule())
 pythonGrammar.add_rule(PythonControlStructures())
+pythonGrammar.add_rule(PythonUsefulCommands())
 pythonGrammar.add_rule(PythonDisabler())
 pythonGrammar.load()
 pythonGrammar.disable()

@@ -1,6 +1,7 @@
 from dragonfly import Choice, MappingRule, Key, RuleRef, Text, Dictation, IntegerRef
 from ..choices.letter import letterChoice
 
+
 class CommandModeStartRule(MappingRule):
     mapping = {
         "exec": Key("colon"),
@@ -11,11 +12,9 @@ class CommandModeStartRule(MappingRule):
         "exec rename": Text(":Rename "),
         "exec move": Text(":Move "),
         "exec lock": Text(":ldo "),
-        # "exec lock files": Text(":lfdo "),
         "exec fix": Text(":cdo "),
         "exec buffers": Text(":bufdo "),
         "exec windows": Text(":windo "),
-        # "exec fix files": Text(":cfdo "),
         "exec call": Text(":call "),
         "exec echo": Text(":echom "),
         "exec set": Text(":set "),
@@ -29,7 +28,7 @@ class CommandModeStartRule(MappingRule):
         "exec file": Text(":e "),
         "exec split": Text(":sp "),
 
-        # FIXME: Should have its own bootstrap and mode, maybe?
+        # TODO: Should have its own bootstrap and mode, maybe?
         "exec search": Text("/"),
         "exec (restrict | include)": Text(":g//") + Key('left'),
         "exec exclude": Text(":v//") + Key('left'),
@@ -37,14 +36,16 @@ class CommandModeStartRule(MappingRule):
         "exec subvert": Text(":Subvert///") + Key('left:2'),
     }
 
+
 class CommandModeFinishRule(MappingRule):
     mapping = {
         "okay | kay": Key("escape"),
         "cancel | oops": Key("escape, u"),
     }
 
+
 class CommandModeCommands(MappingRule):
-    mapping  = {
+    mapping = {
         "read": Text("r "),
         "help": Text("help "),
         "file glob": Text("*/**"), # see `starstar`

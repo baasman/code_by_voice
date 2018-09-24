@@ -30,7 +30,9 @@ insert_start_commands = {
     "open terminal in window": "colon, t, e, r, m, space, plus, plus, c, u, r, w, i, n, enter",
     "nerd change node": 'm',
 
-    "search mode": "slash"
+    "search mode": "slash",
+
+    "terminal insert": "terminal"
 }
 
 
