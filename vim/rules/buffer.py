@@ -5,7 +5,7 @@ class BufferRule(MappingRule):
     mapping = {
         "file save": Key("colon, w, exclamation, enter"),
         "file save all": Key("colon, w, a, exclamation, enter"),
-        "file quit": Key("colon, q, exclamation, enter"),
+        "file quit": Key("c-w, colon, q, exclamation, enter"),
         "file quit all": Key("colon, q, a, exclamation, enter"),
         "file done": Key("colon, x, exclamation, enter"),
         "file done all": Key("colon, x, a, exclamation, enter"),

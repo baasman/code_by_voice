@@ -1,5 +1,4 @@
 from dragonfly import *
-
 from vim.rules.buffer import BufferRule
 from vim.rules.normal_navigation import NormalModeKeystrokeRule
 from vim.rules.insert_mode import _InsertModeEnabler, _InsertModeDisabler
@@ -13,7 +12,7 @@ from vim.plugins.csv import CSVRule
 from vim.plugins.fugutive import FugitiveRule
 from vim.plugins.easymotion import EasyMotionRule
 from vim.plugins.nerdtree import NERDTreeRule
-from vim.plugins.bufkill import BufKillRule 
+from vim.plugins.bufkill import BufKillRule
 
 
 try:
@@ -34,6 +33,7 @@ normal_mode_single = Alternative(normal_mode_multiple)
 normal_mode_multiple_action = Repetition(normal_mode_single, min=1, max=16,
                                          name='normal_mode_multiple_action')
 
+
 class NormalModeRepeatRule(CompoundRule):
 
     spec     = "<normal_mode_multiple_action> [[[and] repeat [that]] <n> times]"
@@ -53,6 +53,7 @@ class NormalModeRepeatRule(CompoundRule):
         release.execute()
 
 # ---------------------------
+
 
 normal_single_rules = [
     RuleRef(rule=BufferRule()),
@@ -81,8 +82,10 @@ class NormalModeSingleAction(CompoundRule):
 
 # ------------------------------------
 
+
 insert_single_rules = [
-    RuleRef(rule=InsertRules())
+    RuleRef(rule=InsertRules()),
+    # RuleRef(rule=FormatRule())
 ]
 
 insert_single_action = Alternative(insert_single_rules,
@@ -96,6 +99,7 @@ class InsertModeSingleAction(CompoundRule):
     def _process_recognition(self, node, extras):
         print extras
         action = extras["insert_mode_single_action"]
+        print action
         action.execute()
         release.execute()
 
@@ -103,7 +107,7 @@ class InsertModeSingleAction(CompoundRule):
 class InsertModeEnable(_InsertModeEnabler):
 
     def _process_recognition(self, node, extras):
-        print(extras)
+        print extras
         InsertModeBootstrap.disable()
         normalModeGrammar.disable()
         InsertModeGrammar.enable()
@@ -153,6 +157,7 @@ class CommandModeDisabler(CommandModeFinishRule):
         normalModeGrammar.enable()
         super(self.__class__, self)._process_recognition(node, extras)
         print "\n(NORMAL)"
+
 
 # global vim context
 vim_context = AppContext(title="Oracle VM VirtualBox")

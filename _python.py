@@ -1,36 +1,24 @@
-# Author:Brandon Lovrien
-# This script is to be used for programming in the Python programming language
-
 from dragonfly import (Grammar, CompoundRule, Dictation, Text, Key, AppContext, MappingRule)
 
 
 class PythonEnabler(CompoundRule):
-    spec = "Enable Python"  # Spoken command to enable the Python grammar.
+    spec = "Enable Python"
 
-    def _process_recognition(self, node, extras):  # Callback when command is spoken.
+    def _process_recognition(self, node, extras):
         pythonBootstrap.disable()
         pythonGrammar.enable()
         print "Python grammar enabled!"
 
 
 class PythonDisabler(CompoundRule):
-    spec = "disable python"  # spoken command to disable the Python grammar.
+    spec = "disable python"
 
-    def _process_recognition(self, node, extras):  # Callback when command is spoken.
+    def _process_recognition(self, node, extras):
         pythonGrammar.disable()
         pythonBootstrap.enable()
         print "Python grammar disabled"
 
 
-# This is a test rule to see if the Python grammar is enabled
-class PythonTestRule(CompoundRule):
-    spec = "test Python"  # Spoken form of command.
-
-    def _process_recognition(self, node, extras):  # Callback when command is spoken.
-        print "Python grammar tested"
-
-
-# handles Python control structures
 class PythonControlStructures(MappingRule):
     mapping = {
         "if": Text("if cond:") + Key("enter"),
@@ -45,12 +33,12 @@ class PythonControlStructures(MappingRule):
 
 class PythonUsefulCommands(MappingRule):
     mapping = {
-        "import panda": Text("import pandas as pd") + Key("enter"),
+        "import pandas": Text("import pandas as pd") + Key("enter"),
         "import numpy": Text("import numpy as np") + Key("enter"),
         "import plot": Text("import matplotlib.pyplot as plt") + Key("enter"),
 
         # pandas
-        "pandas": Text("pandas"),
+        "pandas": Text("pd"),
         "pandas head": Text(".head()"),
 
         # numpy
@@ -67,7 +55,6 @@ pythonBootstrap.add_rule(PythonEnabler())
 pythonBootstrap.load()
 
 pythonGrammar = Grammar("python grammar")
-pythonGrammar.add_rule(PythonTestRule())
 pythonGrammar.add_rule(PythonControlStructures())
 pythonGrammar.add_rule(PythonUsefulCommands())
 pythonGrammar.add_rule(PythonDisabler())

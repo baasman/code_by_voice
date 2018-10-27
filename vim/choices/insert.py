@@ -24,6 +24,7 @@ insert_start_commands = {
     "shift oh": "O",
     "exec insert": "colon",
     "exec control pee": "colon, C, t, r, l, P, enter",
+    "exec control pee tag": "colon, C, t, r, l, P, T, a, g, enter",
     "exec save session": 'colon, ' + ', '.join(list('SaveSession')) + ', enter',
 
     "open terminal": "colon, t, e, r, m, enter",

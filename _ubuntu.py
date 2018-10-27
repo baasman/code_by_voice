@@ -1,5 +1,5 @@
 from dragonfly import (
-    Grammar, 
+    Grammar,
     CompoundRule,
     Dictation,
     Text,
@@ -14,14 +14,16 @@ print 'Ubuntu grammar access'
 
 class FirefoxShortcuts(MappingRule):
     mapping = {
-        "bunt new window": Key("c-T"),
-        "bunt select all": Key("c-a"),
+        "fire new window": Key("c-T"),
+        "fire select all": Key("c-a"),
     }
 
 
 class GeneralUbuntu(MappingRule):
     mapping = {
         "bunt close window": Key("c-w"),
+        # "bunt show desktop": Key("c-a-d"),
+        # "bunt new terminal": Key("c-a-t"),
     }
 
 
